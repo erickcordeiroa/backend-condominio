@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  backend:
+    image: node:22.2.0
+    container_name: backend-condominio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend.conf:/etc/nginx/conf.d/default.conf  # Monta o arquivo de configuração do Nginx
+    ports:
+      - "3001:3001"  # Ou qualquer outra porta configurada para o backend
+    depends_on:
+      - postgres
+    networks:
+      - app-edicondominio
+
+  postgres:
+    image: postgres:13
+    container_name: db-condominio
+    environment:
+      POSTGRES_USER: edicondominio
+      POSTGRES_PASSWORD: edi@2025
+      POSTGRES_DB: edicondominio
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  nginx:
+    image: nginx
+    container_name: nginx-condominio
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf  # Para o frontend React
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - app-edicondominio
+
+networks:
+  app-edicondominio:
+    driver: bridge
