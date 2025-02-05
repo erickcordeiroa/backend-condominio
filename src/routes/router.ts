@@ -1,8 +1,9 @@
 import { Request, Response, Router } from 'express';
+import { authenticateToken } from '../middleware/auth';
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
+router.get('/', authenticateToken, (req: Request, res: Response) => {
   res.send('Hello, world!');
 });
 
