@@ -5,8 +5,8 @@ import { FractionController } from '../controllers/FractionController';
 
 const router = Router();
 
-router.get('/', authenticateToken, (req: Request, res: Response) => {
-  res.send('Hello, world!');
+router.get('/health', (req: Request, res: Response) => {
+  res.send('Server is up and running');
 });
 
 //Authenticate
@@ -14,9 +14,9 @@ router.post('/register', AuthController.register);
 router.post('/login', AuthController.login);
 
 //Fraction
-router.post('/fraction/create', FractionController.create);
+router.post('/fraction/create', authenticateToken, FractionController.create);
 router.get('/fractions', FractionController.getAll);
-router.put('/fraction/update/:id', FractionController.update);
-router.delete('/fraction/delete/:id', FractionController.delete);
+router.put('/fraction/update/:id', authenticateToken, FractionController.update);
+router.delete('/fraction/delete/:id', authenticateToken, FractionController.delete);
 
 export default router;

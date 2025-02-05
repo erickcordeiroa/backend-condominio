@@ -25,12 +25,11 @@ model User {
 model Fraction {
   id        Int      @id @default(autoincrement())
   location  String
-  fraction  Decimal  @db.Decimal(10, 10)
+  fraction  Decimal  @db.Decimal(10, 4)
   type      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("fractions")
   @@index([location])
-  @@unique([location])
 }
