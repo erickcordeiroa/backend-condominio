@@ -29,4 +29,8 @@ model Fraction {
   type      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("fractions")
+  @@index([location])
+  @@unique([location])
 }
