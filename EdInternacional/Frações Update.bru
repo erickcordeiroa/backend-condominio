@@ -1,11 +1,11 @@
 meta {
-  name: Frações Create
+  name: Frações Update
   type: http
-  seq: 4
+  seq: 5
 }
 
-post {
-  url: http://localhost:3001/api/v1/fraction/create
+put {
+  url: http://localhost:3001/api/v1/fraction/update/44
   body: json
   auth: bearer
 }
@@ -17,7 +17,7 @@ auth:bearer {
 body:json {
   {
     "location": "21",
-    "type": "LOJA",
+    "type": "APTO",
     "fraction": 0.2560
   }
 }

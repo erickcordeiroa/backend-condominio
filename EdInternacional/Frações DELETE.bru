@@ -1,23 +1,15 @@
 meta {
-  name: Frações Create
+  name: Frações DELETE
   type: http
-  seq: 4
+  seq: 6
 }
 
-post {
-  url: http://localhost:3001/api/v1/fraction/create
-  body: json
+delete {
+  url: http://localhost:3001/api/v1/fraction/delete/44
+  body: none
   auth: bearer
 }
 
 auth:bearer {
   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlcmlja2NvcmRlaXJvYUBnbWFpbC5jb20iLCJpYXQiOjE3Mzg3NTk1MzEsImV4cCI6MTczODg0NTkzMX0.sVxrnSRxF0O_E3adWHPfP2BOn765djJa6BcMRt5Jbbg
-}
-
-body:json {
-  {
-    "location": "21",
-    "type": "LOJA",
-    "fraction": 0.2560
-  }
 }
