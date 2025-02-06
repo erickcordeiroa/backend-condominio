@@ -19,11 +19,11 @@ services:
     image: postgres:13
     container_name: db-condominio
     environment:
-      POSTGRES_USER: edicondominio
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: edi2025
       POSTGRES_DB: edicondominio
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:

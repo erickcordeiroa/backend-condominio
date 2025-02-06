@@ -30,6 +30,38 @@ model Fraction {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("fractions")
   @@index([location])
+  @@map("fractions")
+}
+
+model Property {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  location    String
+  contact     String
+  type        SaleOrRent
+  price       Decimal    @db.Decimal(10, 2)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  photos Photo[]
+
+  @@index([location])
+  @@map("properties")
+}
+
+model Photo {
+  id         Int      @id @default(autoincrement())
+  url        String
+  isFeatured Boolean  @default(false)
+  propertyId Int
+  property   Property @relation(fields: [propertyId], references: [id])
+
+  @@map("photos")
+}
+
+enum SaleOrRent {
+  SALE
+  RENT
 }

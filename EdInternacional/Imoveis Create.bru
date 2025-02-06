@@ -1,0 +1,26 @@
+meta {
+  name: Imoveis Create
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3001/api/v1/property
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlcmlja2NvcmRlaXJvYUBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4NDg3OTUsImV4cCI6MTczODkzNTE5NX0.-0pNS2WJcSPE28bVyAD5XFGUioUa7FsE3-FsLubh7AU
+}
+
+body:json {
+  {
+    "title": "Apartamento de Luxo 2",
+    "description": "Apartamento moderno com vista para o mar, 3 quartos e 2 banheiros.",
+    "location": "Avenida Atlântica, Copacabana, Rio de Janeiro - RJ",
+    "contact": "(21) 98765-4321",
+    "type": "SALE",
+    "price": 1250000.00
+  }
+}
