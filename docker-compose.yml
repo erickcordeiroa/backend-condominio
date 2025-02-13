@@ -6,23 +6,20 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
-    environment:
-      - NODE_ENV=development
-      - PORT=3001
-      - DATABASE_URL=${DATABASE_URL}
-      - JWT_SECRET=${JWT_SECRET}
+    env_file:
+      - .env
     volumes:
       - .:/app
       - /app/node_modules
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.condominio.rule=Host(`condominio.devnation.com.br`)"
+      - "traefik.http.routers.condominio.entrypoints=websecure"
+      - "traefik.http.routers.condominio.tls=true"
+      - "traefik.http.routers.condominio.tls.certresolver=myresolver"
     networks:
       - edicondominio
       - traefik
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.cidadeativa-app.rule=Host(`condominio.devnation.com.br`)"
-      - "traefik.http.routers.cidadeativa-app.entrypoints=websecure"
-      - "traefik.http.routers.cidadeativa-app.tls=true"
-      - "traefik.http.routers.cidadeativa-app.tls.certresolver=myresolver"
     depends_on:
       - postgres
 
