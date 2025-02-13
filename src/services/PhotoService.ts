@@ -42,7 +42,7 @@ export class PhotosService {
       throw new Error("Nenhuma imagem encontrada");
     }
 
-    photos.forEach((photo) => {
+    photos.forEach((photo: any) => {
       const filePath = path.join(__dirname, "../uploads", path.basename(photo.url));
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
