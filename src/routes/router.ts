@@ -20,17 +20,19 @@ router.post('/login', AuthController.login);
 //Fraction
 router.post('/fraction/create', validateFraction, authenticateToken, FractionController.create);
 router.get('/fractions', FractionController.getAll);
+router.get("/fraction/:id", FractionController.getById);
 router.put('/fraction/update/:id', validateFraction, authenticateToken, FractionController.update);
 router.delete('/fraction/delete/:id', authenticateToken, FractionController.delete);
 
 //Property
 router.get("/properties", authenticateToken, PropertyController.getAll);
 router.post("/property", authenticateToken, PropertyController.create);
+router.get("/property/:id", authenticateToken, PropertyController.getById);
 router.put("/property/:id", authenticateToken, PropertyController.update);
 router.delete("/property/:id", authenticateToken, PropertyController.remove);
 
 router.post("/property/:id/photos", authenticateToken, upload.array("photos", 5), PhotosController.uploadPhotos);
 router.delete("/property/photo/:photoId", PhotosController.deletePhoto);
-router.delete("property/:id/photos", PhotosController.deleteAllPhotos);
+router.delete("/property/:id/photos", PhotosController.deleteAllPhotos);
 
 export default router;

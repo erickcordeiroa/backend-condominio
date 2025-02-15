@@ -1,10 +1,14 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const ALLOWED_TYPES = ['LOJA', 'APTO'];
+const ALLOWED_TYPES = ["LOJA", "APTO"];
 
 export class FractionService {
-  static async createFraction(data: { location: string; fraction: number; type: string }) {
+  static async createFraction(data: {
+    location: string;
+    fraction: number;
+    type: string;
+  }) {
     if (!ALLOWED_TYPES.includes(data.type)) {
       throw new Error('O campo "type" deve ser "LOJA" ou "APTO".');
     }
@@ -18,8 +22,16 @@ export class FractionService {
     return await prisma.fraction.findMany();
   }
 
+  static async getFractionById(id: number) {
+    return await prisma.fraction.findUnique({
+      where: { id },
+    });
+  }
 
-  static async updateFraction(id: number, data: { location?: string; fraction?: number; type?: string }) {
+  static async updateFraction(
+    id: number,
+    data: { location?: string; fraction?: number; type?: string }
+  ) {
     if (data.type && !ALLOWED_TYPES.includes(data.type)) {
       throw new Error('O campo "type" deve ser "LOJA" ou "APTO".');
     }

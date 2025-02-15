@@ -12,15 +12,17 @@ export class PropertyController {
     }
   }
 
-  static async getById (req: Request, res: Response) {
+  public static async getById(req: Request, res: Response): Promise<void> {
     try {
       const id = parseInt(req.params.id);
       const property = await PropertyService.getPropertyById(id);
-      if (!property) return res.status(404).json({ message: "Imóvel não encontrado" });
-  
+      if (!property) {
+        res.status(404).json({ message: 'Property not found' });
+        return;
+      }
       res.json(property);
     } catch (error) {
-      res.status(500).json({ message: "Erro ao buscar imóvel" });
+      res.status(500).json({ message: 'Server error' });
     }
   }
 
