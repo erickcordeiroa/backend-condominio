@@ -12,7 +12,7 @@ export class PropertyController {
     }
   }
 
-  public static async getById(req: Request, res: Response): Promise<void> {
+  static async getById(req: Request, res: Response): Promise<void> {
     try {
       const id = parseInt(req.params.id);
       const property = await PropertyService.getPropertyById(id);

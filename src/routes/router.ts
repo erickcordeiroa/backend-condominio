@@ -25,9 +25,9 @@ router.put('/fraction/update/:id', validateFraction, authenticateToken, Fraction
 router.delete('/fraction/delete/:id', authenticateToken, FractionController.delete);
 
 //Property
-router.get("/properties", authenticateToken, PropertyController.getAll);
+router.get("/properties", PropertyController.getAll);
 router.post("/property", authenticateToken, PropertyController.create);
-router.get("/property/:id", authenticateToken, PropertyController.getById);
+router.get("/property/:id", PropertyController.getById);
 router.put("/property/:id", authenticateToken, PropertyController.update);
 router.delete("/property/:id", authenticateToken, PropertyController.remove);
 
