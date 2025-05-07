@@ -25,7 +25,7 @@ model User {
 model Fraction {
   id        Int      @id @default(autoincrement())
   location  String
-  fraction  Decimal  @db.Decimal(10, 4)
+  fraction  Decimal  @db.Decimal(10, 6)
   type      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -39,7 +39,9 @@ model Property {
   title       String
   description String
   location    String
+  responsiblePerson String
   contact     String
+  whatsappContact String?
   type        SaleOrRent
   price       Decimal    @db.Decimal(10, 2)
   createdAt   DateTime   @default(now())
