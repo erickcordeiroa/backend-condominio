@@ -5,5 +5,5 @@
 
 */
 -- AlterTable
-ALTER TABLE "properties" ADD COLUMN     "responsiblePerson" TEXT NOT NULL,
+ALTER TABLE "properties" ADD COLUMN     "responsiblePerson" TEXT NULL,
 ADD COLUMN     "whatsappContact" TEXT;

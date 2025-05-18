@@ -35,17 +35,17 @@ model Fraction {
 }
 
 model Property {
-  id          Int        @id @default(autoincrement())
-  title       String
-  description String
-  location    String
-  responsiblePerson String
-  contact     String
-  whatsappContact String?
-  type        SaleOrRent
-  price       Decimal    @db.Decimal(10, 2)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id                Int        @id @default(autoincrement())
+  title             String
+  description       String
+  location          String
+  responsiblePerson String?
+  contact           String
+  whatsappContact   String?
+  type              SaleOrRent
+  price             Decimal    @db.Decimal(10, 2)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
 
   photos Photo[]
 
