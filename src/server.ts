@@ -20,6 +20,6 @@ app.use(express.json());
 app.use('/api/v1/', router);
 app.use('/uploads', express.static('uploads'));
 
-app.listen(process.env.PORT, () => {
+app.listen(3001, '0.0.0.0',() => {
   console.log(`🚀 Servidor rodando em http://localhost:${process.env.PORT}`);
 });
