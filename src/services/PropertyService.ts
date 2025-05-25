@@ -1,17 +1,36 @@
 import { PrismaClient } from "@prisma/client";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const prisma = new PrismaClient();
+const BASE_URL = process.env.BASE_URL || "";
 
 export class PropertyService {
     static async getAllProperties() {
-        return await prisma.property.findMany({ include: { photos: true } });
+        const properties = await prisma.property.findMany({ include: { photos: true } });
+        return properties.map(property => ({
+            ...property,
+            photos: property.photos.map(photo => ({
+                ...photo,
+                url: `${BASE_URL}${photo.url}`
+            }))
+        }));
     }
     
     static async getPropertyById(id: number) {
-        return await prisma.property.findUnique({
-        where: { id },
-        include: { photos: true },
+        const property = await prisma.property.findUnique({
+            where: { id },
+            include: { photos: true },
         });
+        if (!property) return null;
+        return {
+            ...property,
+            photos: property.photos.map(photo => ({
+                ...photo,
+                url: `${BASE_URL}${photo.url}`
+            }))
+        };
     }
     
     static async createProperty(data: any) {
