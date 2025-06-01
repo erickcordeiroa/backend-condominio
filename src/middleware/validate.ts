@@ -13,7 +13,7 @@ const userSchema = yup.object().shape({
 // Validação para o schema de Fraction
 const fractionSchema = yup.object().shape({
     location: yup.string().required('Número do apartamento ou loja é obrigatório'),
-    type: yup.string().oneOf(['LOJA', 'APTO'], 'Tipo deve ser "LOJA" ou "APTO"').required('Tipo é obrigatório'),
+    type: yup.string().oneOf(['LOJA', 'APTO', 'BOX'], 'Tipo deve ser "LOJA", "APTO" ou "BOX"').required('Tipo é obrigatório'),
     fraction: yup.number().min(0).max(1, 'A fração deve estar entre 0 e 1').required('Fração é obrigatória'),
 });
 
