@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const ALLOWED_TYPES = ["LOJA", "APTO"];
+const ALLOWED_TYPES = ["LOJA", "APTO", "BOX"];
 
 export class FractionService {
   static async createFraction(data: {
@@ -10,7 +10,7 @@ export class FractionService {
     type: string;
   }) {
     if (!ALLOWED_TYPES.includes(data.type)) {
-      throw new Error('O campo "type" deve ser "LOJA" ou "APTO".');
+      throw new Error('O campo "type" deve ser "LOJA", "APTO" ou "BOX".');
     }
 
     return await prisma.fraction.create({
@@ -33,7 +33,7 @@ export class FractionService {
     data: { location?: string; fraction?: number; type?: string }
   ) {
     if (data.type && !ALLOWED_TYPES.includes(data.type)) {
-      throw new Error('O campo "type" deve ser "LOJA" ou "APTO".');
+      throw new Error('O campo "type" deve ser "LOJA", "APTO" ou "BOX".');
     }
 
     return await prisma.fraction.update({
