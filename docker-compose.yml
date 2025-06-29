@@ -40,16 +40,29 @@ services:
       - edicondominio
 
   nginx:
-    image: nginx
+    image: nginx:latest
     container_name: nginx-condominio
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
       - frontend_dist:/usr/share/nginx/html
+      - ./nginx/certbot/www:/var/www/certbot
+      - ./nginx/certbot/conf:/etc/letsencrypt
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - backend
       - frontend
+    networks:
+      - edicondominio
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot-condominio
+    volumes:
+      - ./nginx/certbot/www:/var/www/certbot
+      - ./nginx/certbot/conf:/etc/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 6h & wait $${!}; certbot renew; done'"
     networks:
       - edicondominio
 
