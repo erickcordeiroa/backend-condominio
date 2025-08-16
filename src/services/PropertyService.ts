@@ -13,7 +13,7 @@ export class PropertyService {
             ...property,
             photos: property.photos.map(photo => ({
                 ...photo,
-                url: `http://147.93.36.206:3001${photo.url}`
+                url: `https://edificiointernacional.com.br${photo.url}`
             }))
         }));
     }
@@ -28,7 +28,7 @@ export class PropertyService {
             ...property,
             photos: property.photos.map(photo => ({
                 ...photo,
-                url: `http://147.93.36.206:3001${photo.url}`
+                url: `https://edificiointernacional.com.br${photo.url}`
             }))
         };
     }

@@ -35,11 +35,12 @@ export class PhotosService {
 
   static async deleteAllPhotos(propertyId: number) {
     const photos = await prisma.photo.findMany({
-      where: { propertyId },
+      where: { 
+	propertyId: propertyId },
     });
 
     if (photos.length === 0) {
-      throw new Error("Nenhuma imagem encontrada");
+      return;
     }
 
     photos.forEach((photo: any) => {
@@ -50,7 +51,9 @@ export class PhotosService {
     });
 
     return prisma.photo.deleteMany({
-      where: { propertyId },
+      where: { 
+	propertyId: propertyId
+	},
     });
   }
 }
